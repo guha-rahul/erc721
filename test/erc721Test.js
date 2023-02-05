@@ -1,35 +1,36 @@
-/// How to know which scripts will run when we run npx hardhat test
-///WHY 11 and 12 for patients record?
-/// writing better contracts 
-/*
-const { expect } = require("chai");
+
+const { expect } =  require("chai");
 const { ethers } = require("hardhat");
 
-
 describe("nft contract", function(){
-    let contract;
-    let token;
-    let _name = "NAME";
-    let _symbol = "SYMBOL";
-    let acct;
-    
-    beforeEach(async() => {
-
-        contract = await ethers.getContractFactory("MYNFT");
-        [acct] = await ethers.getSigners();
-        token = await contract.deploy(_name,_symbol);
-        
+  let contract;
+  let token;
+  let _name = "NAME";
+  let _symbol = "SYMBOL";
+  let acct;
+  
+  beforeEach(async() => {
+    contract = await ethers.getContractFactory("MYNFT");
+    [acct] = await ethers.getSigners();
+    token = await contract.deploy(_name,_symbol);
+  });
+  describe("Deployment", function(){
+  
+    it("Should have the correct name and symbol", async () =>{
+      expect(await token.name()).to.equal(_name);
+      expect(await token.symbol()).to.equal(_symbol);
     });
+  
+    it("Should mint a token with token ID 1 & 2 to account1", async() => {
+      const address1=acct.address;
+      await token.mintNFT(address1);
+      expect(await token.ownerOf(1)).to.equal(address1);
 
-    describe("Deployement", function(){
-        
-        it("Should have the correct name and symbol", async() => {
-            const address1=acct.address;
-            let tx = await token.mintNFT(address1);
-            const receipt = await tx.wait();
-            const _arg = receipt.events[0];
-            console.log(_arg);
-        });
+      await token.mintNFT(address1);
+      expect(await token.ownerOf(2)).to.equal(address1);
+
+      expect(await token.balance0Of(address1)).to.equal(2);      
     });
+  });
+
 });
-*/
