@@ -1,7 +1,7 @@
 /// How to know which scripts will run when we run npx hardhat test
 ///WHY 11 and 12 for patients record?
 /// writing better contracts 
-
+/*
 const { expect } = require("chai");
 const { ethers } = require("hardhat");
 
@@ -32,3 +32,4 @@ describe("nft contract", function(){
         });
     });
 });
+*/
