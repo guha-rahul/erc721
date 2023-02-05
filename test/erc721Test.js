@@ -29,7 +29,7 @@ describe("nft contract", function(){
       await token.mintNFT(address1);
       expect(await token.ownerOf(2)).to.equal(address1);
 
-      expect(await token.balance0Of(address1)).to.equal(2);      
+      expect(await token.balanceOf(address1)).to.equal(2);      
     });
   });
 
